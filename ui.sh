@@ -12,7 +12,7 @@ while true; do
 	elif [ "$c" = "" ]; then
 		exit
 	else
-		BUFFER+="$(cat stage2.out.txt | fzf --query=$c | cut -d' ' -f2 )"
+		BUFFER+="$(cat stage2.out.txt | fzf --algo=v1 --query=$c | cut -d' ' -f2 )"
 	fi
 	echo "$BUFFER"
 done
