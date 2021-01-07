@@ -4,7 +4,7 @@ stage1() {
 }
 
 stage2() {
-	python3 stage2.py | sort -u > stage2.out.txt
+	python3 stage2.py | awk '!x[$0]++' > stage2.out.txt
 	cat map.txt >> stage2.out.txt
 }
 

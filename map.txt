@@ -26,14 +26,14 @@ gi ぎ
 pu ぷ
 bi び
 go ご
-i ぃ
+xi ぃ
 de で
 so そ
 ho ほ
 zu ず
 gu ぐ
 mu む
-ya ゃ
+xya ゃ
 yo よ
 me め
 hi ひ
@@ -50,7 +50,7 @@ ke け
 ni に
 se せ
 ro ろ
-yu ゅ
+xyu ゅ
 do ど
 te て
 e え
@@ -64,7 +64,7 @@ o お
 ti ち
 a あ
 tt っ
-yo ょ
+xyo ょ
 ji じ
 ra ら
 ma ま
@@ -80,5 +80,5 @@ ka か
 si し
 u う
 i い
-n ん
+nn ん
 - ー
