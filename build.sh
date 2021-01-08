@@ -1,3 +1,5 @@
+set -e
+
 stage0() {
 	cd $(dirname "$0")
 	git clone --depth=1 https://github.com/google/mozc
