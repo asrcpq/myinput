@@ -2,6 +2,7 @@
 set -e
 cd "${0:A:h}"
 BUFFER=""
+DICTFILE="$(dirname $0)/../stage2.out.txt"
 while true; do
 	read -r -s -k 1 c
 	if [ "$c" = "." ]; then
@@ -11,8 +12,12 @@ while true; do
 		BUFFER=${BUFFER%?}
 	elif [ "$c" = "" ]; then
 		exit
+	elif [ "$c" = "1" ]; then
+		DICTFILE="$(dirname $0)/../dicts/mozc.out.txt"
+	elif [ "$c" = "2" ]; then
+		DICTFILE="$(dirname $0)/../dicts/sunpinyin.out.txt"
 	else
-		BUFFER+="$(cat "$(dirname $0)/../stage2.out.txt" | \
+		BUFFER+="$(cat "$DICTFILE" | \
 			fzf --algo=v1 --query=$c | \
 			cut -d' ' -f2 )"
 	fi
