@@ -2,7 +2,7 @@
 set -e
 cd "${0:A:h}"
 BUFFER=""
-DICTFILE="$(dirname $0)/../stage2.out.txt"
+DICTFILE="$(dirname $0)/../dicts/mozc.out.txt"
 while true; do
 	read -r -s -k 1 c
 	if [ "$c" = "." ]; then
