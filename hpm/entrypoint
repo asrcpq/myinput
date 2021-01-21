@@ -10,12 +10,18 @@ while true; do
 		exit
 	elif [ "$c" = "," ]; then
 		BUFFER=${BUFFER%?}
-	elif [ "$c" = "" ]; then
+	elif [ "$c" = "" ] || [ "$c" = "" ]; then
 		exit
+	elif [ "$c" = "0" ]; then
+		read -r rawstr
+		BUFFER+="$rawstr"
 	elif [ "$c" = "1" ]; then
 		DICTFILE="$(dirname $0)/../dicts/mozc.out.txt"
 	elif [ "$c" = "2" ]; then
 		DICTFILE="$(dirname $0)/../dicts/sunpinyin.out.txt"
+	elif [ "$c" = "3" ]; then
+		read -r unistr
+		BUFFER+="$(echo -e "\u$unistr")"
 	else
 		BUFFER+="$(cat "$DICTFILE" | \
 			fzf --algo=v1 --query=$c | \
