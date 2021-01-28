@@ -20,8 +20,8 @@ while true; do
 	elif [ "$c" = "2" ]; then
 		DICTFILE="$(dirname $0)/../dicts/sunpinyin.out.txt"
 	elif [ "$c" = "3" ]; then
-		read -r unistr
-		BUFFER+="$(echo -e "\u$unistr")"
+		tmp=`find /usr/share/unicode -type f -exec cat {} \+ | fzf`
+		BUFFER+="$(echo -e '\u'"${tmp:0:4}")"
 	else
 		BUFFER+="$(cat "$DICTFILE" | \
 			fzf --algo=v1 --query=$c | \
