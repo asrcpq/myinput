@@ -17,17 +17,17 @@ while true; do
 		read -r rawstr
 		BUFFER+="$rawstr"
 	elif [ "$c" = "1" ]; then
-		DICTFILE="$(dirname $0)/../dicts/mozc.out.txt"
+		DICTFILE="$(dirname $0)/../dicts/mozc.out.txt $XDG_CONFIG_HOME/myinput/mozc"
 		mode=1
 	elif [ "$c" = "2" ]; then
-		DICTFILE="$(dirname $0)/../dicts/sunpinyin.out.txt"
+		DICTFILE="$(dirname $0)/../dicts/sunpinyin.out.txt $XDG_CONFIG_HOME/myinput/sunpinyin"
 		mode=2
 	elif [ "$c" = "3" ]; then
 		tmp=`find /usr/share/unicode -type f -exec cat {} \+ | fzf`
 		BUFFER+="$(echo -e '\u'"${tmp:0:4}")"
 		mode=3
 	else
-		BUFFER+="$(cat "$DICTFILE" | \
+		BUFFER+="$({eval "cat $DICTFILE" 2>/dev/null || true} | \
 			fzf --algo=v1 --query=$c | \
 			cut -d' ' -f2 )"
 	fi
