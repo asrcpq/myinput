@@ -20,20 +20,20 @@ for line in dictfile:
 		if ch == revdict['tt']:
 			ttflag = True
 			continue
-		else:
-			ttflag = False
 		if (ch == revdict['xya'] or \
 			ch == revdict['xyu'] or \
 			ch == revdict['xyo']) and \
 			len(mappedstr) >= 2:
 			mappedstr = mappedstr[:-1] + mapdict[ch][1:]
-		elif ttflag and mapdict[ch][0] not in 'aeiou':
+		elif ttflag and ch in mapdict and mapdict[ch][0] not in 'aeiou':
 			mappedstr += mapdict[ch][0] + mapdict[ch]
 		else:
 			try:
 				mappedstr += mapdict[ch]
 			except:
 				mappedstr += "?"
+		if ttflag:
+			ttflag = False
 	print(mappedstr, line_sp[1])
 mapfile.close()
 dictfile.close()
