@@ -5,7 +5,13 @@ stage0() {
 	if ! [ -f dict.out.txt ]; then
 		curl -sL https://raw.githubusercontent.com/sunpinyin/open-gram/master/data/dict.full > dict.out.txt
 	fi
-	cat dict.out.txt | sed 's/:[^%]*%//g' | python3 split_duoyinzi.py > dict_split.out.txt
+	if ! [ -f comm.out.txt ]; then
+		curl -sL "https://raw.githubusercontent.com/DavidSheh/CommonChineseCharacter/master/3500%E5%B8%B8%E7%94%A8%E5%AD%97.txt" > comm.out.txt
+	fi
+	pv dict.out.txt |\
+		egrep "^[$(cat comm.out.txt | sed -E 's/(.)/\1|/g' | sed 's/1.*//g' | sed -E 's/^.(.*).$/\1/g')]* " |\
+		sed 's/:[^%]*%//g' |\
+		python3 split_duoyinzi.py > dict_split.out.txt
 }
 
 stage1() {
