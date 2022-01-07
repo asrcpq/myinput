@@ -8,6 +8,7 @@ while true; do
 	read -r -s -k 1 c
 	if [ "$c" = "." ]; then
 		echo -ne $BUFFER | xsel -i -b
+		sleep 0.1
 		exit
 	elif [ "$c" = "," ]; then
 		BUFFER=${BUFFER%?}
